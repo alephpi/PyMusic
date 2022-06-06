@@ -12,10 +12,11 @@ class Note:
 
 class Key:
     NOTE_NAME = ['A','A#','B','C','C#','D','D#','E','F','F#','G','G#']
-    pentatonic = [2,2,3,2,3]
-    heptatonic = [2,2,1,2,2,2,1]
+    pentatonic_cn = [2,2,3,2,3] #民族五声音阶
+    diatonic = [2,2,1,2,2,2,1] #自然七声音阶
+    digit = 4 #display
     # 调式
-    MODE = {'hepta_scale':{
+    MODE = {'diatonic':{
                 'Ionian': 0,
                 'Dorian': 1,
                 'Phrygian':2,
@@ -28,18 +29,18 @@ class Key:
     def __init__(self, tonic: Note, mode: str, temperament: Temperament) -> None:
         self.tonic: Note = tonic # define the tonic
         self.scale: OrderedDict[str, float] = {}
-        self.temperment = temperament
-        if mode in Key.MODE['hepta_scale'].keys():
-            rotation = Key.MODE['hepta_scale'][mode]
-            aux = deque(Key.heptatonic)
+        self.temperament = temperament
+        if mode in Key.MODE['diatonic'].keys():
+            rotation = Key.MODE['diatonic'][mode]
+            aux = deque(Key.diatonic)
             aux.rotate(rotation)
             indices = [0] + list(accumulate(list(aux)))
             start_index = Key.NOTE_NAME.index(self.tonic.name)
             for i in indices:
                 if (i!=12):
-                    self.scale[Key.NOTE_NAME[(i + start_index) % len(Key.NOTE_NAME)]] = self.tonic.pitch * self.temperment.ratios[i]  
+                    self.scale[Key.NOTE_NAME[(i + start_index) % len(Key.NOTE_NAME)]] = round(self.tonic.pitch * self.temperament.ratios[i], Key.digit)  
                 else:
-                    self.scale[self.tonic.name+'\''] = self.tonic.pitch * self.temperment.ratios[i]
+                    self.scale[self.tonic.name+'\''] = round(self.tonic.pitch * self.temperament.ratios[i], Key.digit)
     def __str__(self) -> str:
         return self.scale.__str__()            
 

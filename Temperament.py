@@ -46,6 +46,12 @@ class Temperament:
          ratios[n % 12] = (3 ** i / 2 ** (i + math.floor(i * log2_perfect_fifth)))
       ratios[12] =  2 * (3 ** 12 / 2 ** (12 + math.floor(12 * log2_perfect_fifth)))
       return cls(ratios)
+   
+   @classmethod
+   def EqualTemperament(cls):
+      ratio = 2 ** (1/Temperament.num) # 朱载堉
+      ratios = [ratio ** i for i in range(Temperament.num+1)]
+      return cls(ratios)
 
    def __str__(self) -> str:
       return self.intervals.__str__() 
