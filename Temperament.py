@@ -1,7 +1,13 @@
 import math
 from typing import List
 # from collections import OrderedDict
-from Interval import Interval
+class Interval:
+    def __init__(self, name: str, ratio: float):
+        self.name = name
+        self.ratio = ratio 
+    def __repr__(self):
+        return "%s\t%.4f" % (self.name, self.ratio)
+
 class Temperament:
    num = 12 #number of tones
    MUSIC_INTERVAL_NAME = ['unison',
@@ -20,9 +26,9 @@ class Temperament:
    
    def __init__(self, ratios: List[float]) -> None:
       self.ratios: List[float] = ratios #record the intervals for a certain temperament
-      self.scale = []
+      self.intervals: List[Interval] = []
       for i in range(Temperament.num+1):
-         self.scale.append(Interval(Temperament.MUSIC_INTERVAL_NAME[i], self.ratios[i])) #precise frequency ratio per interval
+         self.intervals.append(Interval(Temperament.MUSIC_INTERVAL_NAME[i], self.ratios[i])) #precise frequency ratio per interval
 
    @classmethod
    def JustIntonation(cls):
@@ -42,4 +48,4 @@ class Temperament:
       return cls(ratios)
 
    def __str__(self) -> str:
-      return self.scale.__str__() 
+      return self.intervals.__str__() 
