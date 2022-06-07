@@ -46,3 +46,7 @@ Some useful references:
 [The dissonant tritone and Just Tuning theory](http://tuanpham.org/JustTuning.htm)
 
 [What are the ratios of Just Intonation?](https://music.stackexchange.com/questions/108096/what-are-the-ratios-of-just-intonation)
+
+关于民族七声音阶：
+
+[苗金海：三种七声音阶的正名与“燕乐音阶”的争鸣](http://www.artanthropology.com/show.aspx?id=1019&cid=11)
