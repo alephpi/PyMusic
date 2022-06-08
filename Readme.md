@@ -50,3 +50,10 @@ Some useful references:
 关于民族七声音阶：
 
 [苗金海：三种七声音阶的正名与“燕乐音阶”的争鸣](http://www.artanthropology.com/show.aspx?id=1019&cid=11)
+
+---
+开发日志
+
+- [x] 基本概念对应基本类
+- [x] 定调
+- [ ] 绘制半音图(chromatic circle)
