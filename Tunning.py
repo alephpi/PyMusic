@@ -1,9 +1,25 @@
+"""This file contains code used in "PyMusic",
+by MAO Sicheng, available from https://github.com/alephpi/PyMusic/
+
+Copyright 2022 MAO Sicheng
+License: MIT License (https://opensource.org/licenses/MIT)
+"""
+
 from collections import deque, OrderedDict
 from itertools import accumulate
 from typing import List,OrderedDict
 import numpy as np
 import math
 import matplotlib.pyplot as plt
+from functools import reduce
+import warnings
+try:
+    from thinkdsp import CosSignal, Wave
+except:
+    warnings.warn(
+        "Can't import thinkdsp;" "Please install the module from https://github.com/AllenDowney/ThinkDSP/blob/master/code/thinkdsp.py"
+    )
+
 class Interval:
     def __init__(self, name: str, ratio: float):
         self.name = name
@@ -184,6 +200,15 @@ class Key:
                 ax.plot([0,xval[i]],[0,yval[i]],'c-')
         ax.set_aspect(1)
         ax.add_artist(draw_circle)
+
+    def make_audio(self, timbre = 'pure', duration= 1, framerate=44100 ):
+        freqs = [i for i in self.tonality.values()]
+        signals = [CosSignal(freq=freq) for freq in freqs]
+        waves = [signal.make_wave(duration=duration, framerate=framerate) for signal in signals]
+        wave = reduce(Wave.__or__,waves)
+        wave.apodize()
+        return wave.make_audio()
+        
 # test scripts
 # C = Note('C', 256)
 # D = Note('D', 288)

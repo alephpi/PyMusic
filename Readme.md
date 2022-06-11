@@ -56,4 +56,9 @@ Some useful references:
 
 - [x] 基本概念对应基本类
 - [x] 定调
-- [ ] 绘制半音图(chromatic circle)
+- [x] 绘制半音图(chromatic circle)
+- [x] 加入音乐实例
+- [ ] 节奏
+- [ ] 变调
+- [ ] 和声
+
